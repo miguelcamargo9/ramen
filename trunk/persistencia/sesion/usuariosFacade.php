@@ -11,23 +11,35 @@
  *
  * @author Sebastian Rojas
  */
+
 namespace sesion;
 
 include_once 'abstractFacade.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/ramen/persistencia/entidades/ciudades.php';
 
 class usuariosFacade {
+
   private $em;
+
   function __construct() {
-    $config = array("DB" => "pgsql");
+    $config = array("DB"=>"pgsql");
     $abstract = new \abstractFacade();
     $abstract->conectar($config);
     $this->em = $abstract->getEm();
   }
+
   public function query() {
     foreach ($this->em->query("SELECT * FROM usuarios") as $fila) {
       print_r($fila);
     }
+  }
+
+  static function validarUsuario($nickname = "", $pass = "") {
+    if ($nickname == "sebastian" && $pass == "sebastian") {
+      $bandera = TRUE;
+    } else {
+      $bandera = FALSE;
+    }
+    return $bandera;
   }
 
 }
