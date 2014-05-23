@@ -11,7 +11,7 @@
  *
  * @author Sebastian Rojas
  */
-include $_SERVER['DOCUMENT_ROOT'] . '/ramen/configuracion/configuracionGeneral.php';
+include $_SERVER['DOCUMENT_ROOT'].'/ramen/configuracion/configuracionGeneral.php';
 
 class entityManager {
 
@@ -26,14 +26,14 @@ class entityManager {
     switch ($this->configuracion['DB']) {
       case "mysql":
         try {
-          $this->conexion = new PDO("mysql:host=" . DB_HOSTMYSQL . ";dbname=" . DB_NAMEMYSQL, DB_USERMYSQL, DB_PASSWORDMYSQL);
+          $this->conexion = new PDO("mysql:host=".DB_HOSTMYSQL.";dbname=".DB_NAMEMYSQL, DB_USERMYSQL, DB_PASSWORDMYSQL);
         } catch (PDOException $exc) {
           echo $exc->getMessage();
         }
         break;
       case "pgsql":
         try {
-          $this->conexion = new PDO("pgsql:dbname=" . DB_NAMEPSSQL . ";host=" . DB_HOSTPSSQL, DB_USERPSSQL, DB_PASSWORDPSSQL);
+          $this->conexion = new PDO("pgsql:dbname=".DB_NAMEPSSQL.";host=".DB_HOSTPSSQL, DB_USERPSSQL, DB_PASSWORDPSSQL);
         } catch (PDOException $exc) {
           echo $exc->getMessage();
         }

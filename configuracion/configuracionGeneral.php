@@ -1,10 +1,12 @@
 <?php
+
 /*
- * Parametros de conexion con la base de datos mysql, postgres y oracle
- * 
+ * Parametros de conexion con la base de datos mysql, postgres y oracle 
  */
+
+
 define("RAMEN_DIRNAME", "ramen");
-define("BASE_PATH", $_SERVER['DOCUMENT_ROOT'] . "/" . RAMEN_DIRNAME);
+define("BASE_PATH", $_SERVER['DOCUMENT_ROOT']."/".RAMEN_DIRNAME);
 define('DB_NAMEMYSQL', 'ramenadministrativos');
 define('DB_USERMYSQL', 'marketplaceuser');
 define('DB_PASSWORDMYSQL', 'marketplaceuser');
