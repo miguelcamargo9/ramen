@@ -15,7 +15,11 @@ include_once '../controladores/sessionControlador.php';
     <link href="../css/sb-admin.css" rel="stylesheet">
     <script type="text/javascript" src="../js/jquery/jquery.js"></script>
     <script type="text/javascript" src="../librerias/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script type="text/javascript">
+      $(function() {
+        $('#side-menu').metisMenu();
+      });
       $(window).unload(function() {
         $.ajax({
           url: '../controladores/salirControlador.php',
@@ -32,6 +36,11 @@ include_once '../controladores/sessionControlador.php';
           data: {id: "<?php echo $_SESSION['id']; ?>"}
         });
         window.location = "http://127.0.0.1/ramen";
+      }
+
+      function f_link(enlace) {
+        var frame = $("#contenido");
+        frame.attr("src", enlace);
       }
     </script>
   </head>
@@ -66,11 +75,27 @@ include_once '../controladores/sessionControlador.php';
         <!-- /.navbar-top-links -->
 
         <div class="navbar-default navbar-static-side" role="navigation">
-          el super menu
+          <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+              <li>
+                <a href="#"><i class="fa fa-wrench fa-fw"></i> Configuracion<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                  <li>
+                    <a onclick="f_link('opcionPrueba.php')">Opcion Prueba</a>
+                  </li>
+                </ul>
+                <!-- /.nav-second-level -->
+              </li>
+            </ul>
+            <!-- /#side-menu -->
+          </div>
+          <!-- /.sidebar-collapse -->
         </div>
+        <!-- /.navbar-static-side -->
       </nav>
       <div id="page-wrapper">
-        algo
+        <iframe id="contenido" width="100%" height="98%" frameBorder="0" scrolling="no">
+        </iframe>
       </div>
     </div>
   </body>
