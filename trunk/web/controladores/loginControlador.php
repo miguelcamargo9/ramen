@@ -14,13 +14,14 @@ $facade = new \sesion\usuariosFacade();
 $bandera = $facade->validarUsuario($_POST['nickname'], $_POST['pass']);
 if ($bandera['ingreso']) {
   include_once '../modelos/sessionModelo.php';
-  $model = new \modelo\sessionModelo($bandera['datos']['nickname'], $bandera['datos']['nickname'], $bandera['datos']['id']);
+  $model = new \modelo\sessionModelo($bandera['datos']['primerNombre'], $bandera['datos']['primerApellido'], $bandera['datos']['id']);
   if ($_SESSION['error'] == "") {
     header("Location: ../../web/vistas/menu.php");
   } else {
     header("Location: ../../web/error.php");
   }
 } else {
+  $_SESSION['error'] = "el usuario no existe";
   header("Location: ../../web/error.php");
 }
 

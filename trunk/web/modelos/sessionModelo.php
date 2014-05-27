@@ -38,7 +38,8 @@ class sessionModelo {
         $_SESSION['id'] = $this->id;
         $_SESSION['nombre'] = $this->nombre;
         $_SESSION['apellido'] = $this->apellido;
-        $_SESSION['apellido'] = $this->apellido;
+        $_SESSION['idPerfil'] = $vDatosUsuario['idPerfil'];
+        $_SESSION['idSede'] = $vDatosUsuario['idSede'];
         $facade->actualizarIdSession($vDatosUsuario['id'], session_id());
       } else {
         $_SESSION['error'] = "su sesion ya se encuentra activa";

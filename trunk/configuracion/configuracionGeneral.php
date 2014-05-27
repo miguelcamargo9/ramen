@@ -7,9 +7,9 @@
 
 define("RAMEN_DIRNAME", "ramen");
 define("BASE_PATH", $_SERVER['DOCUMENT_ROOT']."/".RAMEN_DIRNAME);
-define('DB_NAMEMYSQL', 'pruebas');
-define('DB_USERMYSQL', 'marketplaceuser');
-define('DB_PASSWORDMYSQL', 'marketplaceuser');
+define('DB_NAMEMYSQL', 'ramenadministrativos');
+define('DB_USERMYSQL', 'root');
+define('DB_PASSWORDMYSQL', '');
 define('DB_HOSTMYSQL', 'localhost');
 define('DB_NAMEPSSQL', 'prueba');
 define('DB_USERPSSQL', 'postgres');
