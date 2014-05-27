@@ -8,17 +8,19 @@
 
 namespace controladores;
 
-use sesion\usuariosFacade as sebas;
-
+require_once '../../persistencia/sesion/usuariosFacade.php';
 session_start();
-$facade = new sebas();
+$facade = new \sesion\usuariosFacade();
 $bandera = $facade->validarUsuario($_POST['nickname'], $_POST['pass']);
-if ($bandera) {
-  $_SESSION['usuario'] = "Sebastian Rojas";
-  $_SESSION['id'] = "1016036869";
-  header("Location: web/vistas/menu.php");
+if ($bandera['ingreso']) {
+  include_once '../modelos/sessionModelo.php';
+  $model = new \modelo\sessionModelo($bandera['datos']['nickname'], $bandera['datos']['nickname'], $bandera['datos']['id']);
+  if ($_SESSION['error'] == "") {
+    header("Location: ../../web/vistas/menu.php");
+  } else {
+    header("Location: ../../web/error.php");
+  }
 } else {
-  session_destroy();
-  header("Location: web/error.php");
+  header("Location: ../../web/error.php");
 }
 

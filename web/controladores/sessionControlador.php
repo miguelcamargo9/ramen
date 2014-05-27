@@ -2,7 +2,8 @@
 
 namespace controladores;
 
-if (isset($_SESSION)) {
-  header("Location: web/error.php");
+session_start();
+if ($_SESSION['nombre'] == "") {
+  header("Location: ../../web/error.php");
 } 
 
