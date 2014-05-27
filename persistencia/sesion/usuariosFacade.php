@@ -46,7 +46,7 @@ class usuariosFacade {
     $sentencia->execute();
     $vUsuarios = $sentencia->fetch();
     if (!is_null($vUsuarios)) {
-      if ($vUsuarios['password'] == md5($pass)) {
+      if ($vUsuarios['contrasena'] == md5($pass)) {
         $resultados["ingreso"] = $bandera = true;
         $resultados["datos"] = $vUsuarios;
       } else {

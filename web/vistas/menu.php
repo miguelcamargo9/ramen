@@ -83,6 +83,25 @@ include_once '../controladores/sessionControlador.php';
                   <li>
                     <a onclick="f_link('opcionPrueba.php')">Opcion Prueba</a>
                   </li>
+                  <li>
+                    <a onclick="f_link('opcionPrueba.php')">Opcion Prueba</a>
+                  </li>
+                </ul>
+                <ul class="nav nav-second-level">
+                </ul>
+                <!-- /.nav-second-level -->
+              </li>
+              <li>
+                <a href="#"><i class="fa fa-wrench fa-fw"></i> Configuracion<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                  <li>
+                    <a onclick="f_link('opcionPrueba.php')">Opcion Prueba</a>
+                  </li>
+                  <li>
+                    <a onclick="f_link('opcionPrueba.php')">Opcion Prueba</a>
+                  </li>
+                </ul>
+                <ul class="nav nav-second-level">
                 </ul>
                 <!-- /.nav-second-level -->
               </li>
