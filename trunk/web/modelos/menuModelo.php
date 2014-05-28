@@ -11,6 +11,46 @@
  *
  * @author open12
  */
+
+namespace modelos;
+
+include_once $_SERVER['DOCUMENT_ROOT'] . '/ramen/configuracion/configuracionGeneral.php';
+require_once BASE_PATH . '/persistencia/sesion/menuFacade.php';
+require_once BASE_PATH . '/persistencia/sesion/permisosFacade.php';
+
 class menuModelo {
-  //put your code here
+
+    //put your code here
+    public function crearMenuPorIdPerfil($idPerfil = "") {
+        $permisosFac = new \sesion\permisosFacade();
+        $menuFac = new \sesion\menuFacade();
+        $mPadres = array();
+        $mHijos = array();
+        $mPermisos = $permisosFac->permisosPorId($_SESSION['idPerfil']);
+//        echo "<pre>";
+//        print_r($mPermisos);
+        for ($i = 0; $i < count($mPermisos); $i++) {
+            $menuDevuelto = $menuFac->menuPorId($mPermisos[$i]['idOpcionMenu']);
+            if ($menuDevuelto['idPadre'] == "" || $menuDevuelto['idPadre'] == "null") {
+                $mPadres[] = $menuFac;
+            } else {
+                $mHijos[] = $menuFac;
+            }
+        }
+        
+        foreach ($mPadres as $padre) {
+            $sMenu = "<li>";
+            $sMenu .= "<a href='" . $padre->enlace . "' <i class='fa fa-wrench fa-fw'></i>" . $padre->descripcion . "<span class = 'fa arrow'></span></a> ";
+            $sMenu .= "<ul class = 'nav nav-second-level'>";
+            foreach ($mHijos as $hijo) {
+                if ($padre->id == $padre->idPadre) {
+                    $sMenu .= "<li>";
+                    $sMenu .= "<a onclick = \"f_link('" . $hijo->enlace. "')\">" . $hijo->descripcion . "</a>";
+                    $sMenu .= "</li>";
+                }
+            }
+            $sMenu .= "</li>";
+        }
+    }
+
 }
