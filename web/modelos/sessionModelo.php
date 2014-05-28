@@ -8,7 +8,6 @@
 
 namespace modelo;
 
-session_start();
 include_once $_SERVER['DOCUMENT_ROOT'].'/ramen/configuracion/configuracionGeneral.php';
 include_once BASE_PATH.'/persistencia/sesion/usuariosFacade.php';
 
