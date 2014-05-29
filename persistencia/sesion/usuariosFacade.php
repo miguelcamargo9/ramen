@@ -14,9 +14,9 @@
 
 namespace sesion;
 
-include_once $_SERVER['DOCUMENT_ROOT'].'/ramen/configuracion/configuracionGeneral.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/ramen/configuracion/configuracionGeneral.php';
 include_once 'abstractFacade.php';
-include_once BASE_PATH.'/persistencia/entidades/usuarios.php';
+include_once BASE_PATH . '/persistencia/entidades/usuarios.php';
 
 use entidades\usuarios as usu;
 
@@ -25,7 +25,7 @@ class usuariosFacade {
   private $em;
 
   function __construct() {
-    $config = array("DB"=>"mysql");
+    $config = array("DB" => "mysql");
     $abstract = new \abstractFacade();
     $abstract->conectar($config);
     $this->em = $abstract->getEm();
@@ -47,14 +47,14 @@ class usuariosFacade {
     $vUsuarios = $sentencia->fetch();
     if (!is_null($vUsuarios)) {
       if ($vUsuarios['contrasena'] == md5($pass)) {
-        $resultados["ingreso"] = $bandera = true;
+        $resultados["ingreso"] = true;
         $resultados["datos"] = $vUsuarios;
       } else {
-        $resultados["ingreso"] = $bandera = false;
+        $resultados["ingreso"] = false;
         $resultados["error"] = "contraseña erronea";
       }
     } else {
-      $resultados["ingreso"] = $bandera = false;
+      $resultados["ingreso"] = false;
       $resultados["error"] = "El usuario no existe";
     }
 

@@ -12,7 +12,6 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/ramen/configuracion/configuracionGenera
 include_once BASE_PATH.'/persistencia/sesion/usuariosFacade.php';
 
 use sesion\usuariosFacade as facadeUsuario;
-
 class sessionModelo {
 
   public $nombre;
