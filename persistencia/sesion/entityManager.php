@@ -37,6 +37,14 @@ class entityManager {
         } catch (PDOException $exc) {
           echo $exc->getMessage();
         }
+        break;
+      case "oracle":
+        try {
+          $this->conexion = new PDO("oci:dbname=".DB_NAMEORACLE, DB_USERORACLE, DB_PASSWORDORACLE);
+        } catch (PDOException $exc) {
+          echo $exc->getMessage();
+        }
+        break;
     }
   }
 
