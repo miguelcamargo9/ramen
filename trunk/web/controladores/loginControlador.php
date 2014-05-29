@@ -7,11 +7,12 @@
  */
 
 namespace controladores;
-
 require_once '../../persistencia/sesion/usuariosFacade.php';
 session_start();
 $facade = new \sesion\usuariosFacade();
 $bandera = $facade->validarUsuario($_POST['nickname'], $_POST['pass']);
+echo "<pre>";
+print_r($bandera);
 if ($bandera['ingreso']) {
   include_once '../modelos/sessionModelo.php';
   $model = new \modelo\sessionModelo($bandera['datos']['primerNombre'], $bandera['datos']['primerApellido'], $bandera['datos']['id']);
@@ -21,7 +22,8 @@ if ($bandera['ingreso']) {
     header("Location: ../../web/error.php");
   }
 } else {
-  $_SESSION['error'] = "el usuario no existe";
+  session_start();
+  $_SESSION['error'] = $bandera['error'];
   header("Location: ../../web/error.php");
 }
 

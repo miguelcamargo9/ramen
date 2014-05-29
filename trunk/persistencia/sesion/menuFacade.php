@@ -20,23 +20,24 @@ include_once BASE_PATH . '/persistencia/entidades/menus.php';
 
 class menuFacade {
 
-    private $em;
+  private $em;
 
-    function __construct() {
-        $config = array("DB" => "mysql");
-        $abstract = new \abstractFacade();
-        $abstract->conectar($config);
-        $this->em = $abstract->getEm();
-    }
+  function __construct() {
+    $config = array("DB" => "mysql");
+    $abstract = new \abstractFacade();
+    $abstract->conectar($config);
+    $this->em = $abstract->getEm();
+  }
 
-    public function menuPorId($id = "") {
+  public function menuPorId($id = "") {
 //        error_reporting(-1);
-        $menu = new \entidades\menus();
-        $vQuerys = $menu->getSelect();
-        $sentencia = $this->em->prepare("$vQuerys[1]");
-        $sentencia->bindParam(':id', $id);
-        $sentencia->execute();
-        return $sentencia->fetch();
-    }
+    $menu = new \entidades\menus();
+    $vQuerys = $menu->getSelect();
+    $sentencia = $this->em->prepare("$vQuerys[1]");
+    $sentencia->bindParam(':id', $id);
+    $sentencia->execute();
+    $vResultado = $sentencia->fetch();
+    return $vResultado;
+  }
 
 }

@@ -22,14 +22,6 @@ $menuModel = new \modelos\menuModelo();
             $(function() {
                 $('#side-menu').metisMenu();
             });
-            $(window).unload(function() {
-                $.ajax({
-                    url: '../controladores/salirControlador.php',
-                    type: "POST",
-                    dataType: "json",
-                    data: {id: "<?php echo $_SESSION['id']; ?>"}
-                });
-            });
             function f_salir() {
                 $.ajax({
                     url: '../controladores/salirControlador.php',
@@ -45,6 +37,11 @@ $menuModel = new \modelos\menuModelo();
                 frame.attr("src", enlace);
             }
         </script>
+        <style>
+          a{
+            cursor:pointer;
+          }
+        </style>
     </head>
     <body>
         <div id="wrapper">
@@ -79,33 +76,9 @@ $menuModel = new \modelos\menuModelo();
                 <div class="navbar-default navbar-static-side" role="navigation">
                     <div class="sidebar-collapse">
                         <ul class="nav" id="side-menu">
-                            <li>
-                                <a href="#"><i class="fa fa-wrench fa-fw"></i> Configuracion<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a onclick="f_link('opcionPrueba.php')">Opcion Prueba</a>
-                                    </li>
-                                    <li>
-                                        <a onclick="f_link('opcionPrueba.php')">Opcion Prueba</a>
-                                    </li>
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
                             <?php
                             echo $menuModel->crearMenuPorIdPerfil($_SESSION['idPerfil']);
                             ?>
-                            <li>
-                                <a href="#"><i class="fa fa-wrench fa-fw"></i> Configuracion<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a onclick="f_link('opcionPrueba.php')">Opcion Prueba</a>
-                                    </li>
-                                    <li>
-                                        <a onclick="f_link('opcionPrueba.php')">Opcion Prueba</a>
-                                    </li>
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
                         </ul>
                         <!-- /#side-menu -->
                     </div>

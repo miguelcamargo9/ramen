@@ -27,30 +27,30 @@ class menuModelo {
         $mPadres = array();
         $mHijos = array();
         $mPermisos = $permisosFac->permisosPorId($_SESSION['idPerfil']);
-//        echo "<pre>";
-//        print_r($mPermisos);
         for ($i = 0; $i < count($mPermisos); $i++) {
             $menuDevuelto = $menuFac->menuPorId($mPermisos[$i]['idOpcionMenu']);
             if ($menuDevuelto['idPadre'] == "" || $menuDevuelto['idPadre'] == "null") {
-                $mPadres[] = $menuFac;
+                $mPadres[] = $menuDevuelto;
             } else {
-                $mHijos[] = $menuFac;
+                $mHijos[] = $menuDevuelto;
             }
         }
         
         foreach ($mPadres as $padre) {
-            $sMenu = "<li>";
-            $sMenu .= "<a href='" . $padre->enlace . "' <i class='fa fa-wrench fa-fw'></i>" . $padre->descripcion . "<span class = 'fa arrow'></span></a> ";
-            $sMenu .= "<ul class = 'nav nav-second-level'>";
+            $sMenu .= "<li>";
+            $sMenu .= "<a href=\"" . $padre['enlace'] . "\"> <i class=\"fa fa-wrench fa-fw\">". $padre['descripcion'] ."</i><span class = \"fa arrow\"></span></a> ";
+            $sMenu .= "<ul class = \"nav nav-second-level\">";
             foreach ($mHijos as $hijo) {
-                if ($padre->id == $padre->idPadre) {
+                if ($padre['id'] == $hijo['idPadre']) {
                     $sMenu .= "<li>";
-                    $sMenu .= "<a onclick = \"f_link('" . $hijo->enlace. "')\">" . $hijo->descripcion . "</a>";
+                    $sMenu .= "<a onclick = \"f_link('" . $hijo['enlace']. "')\">" . $hijo['descripcion'] . "</a>";
                     $sMenu .= "</li>";
                 }
             }
+            $sMenu .="</ul>";
             $sMenu .= "</li>";
         }
+        return $sMenu;
     }
 
 }
