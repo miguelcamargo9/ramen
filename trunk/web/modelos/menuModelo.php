@@ -38,7 +38,7 @@ class menuModelo {
         
         foreach ($mPadres as $padre) {
             $sMenu .= "<li>";
-            $sMenu .= "<a href=\"" . $padre['enlace'] . "\"> <i class=\"fa fa-wrench fa-fw\">". $padre['descripcion'] ."</i><span class = \"fa arrow\"></span></a> ";
+            $sMenu .= "<a href=\"" . $padre['enlace'] . "\"> <i class=\"fa fa-bookmark fa-fw\">". $padre['descripcion'] ."</i><span class = \"fa arrow\"></span></a> ";
             $sMenu .= "<ul class = \"nav nav-second-level\">";
             foreach ($mHijos as $hijo) {
                 if ($padre['id'] == $hijo['idPadre']) {
