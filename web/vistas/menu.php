@@ -21,6 +21,7 @@ $menuModel = new \modelos\menuModelo();
         <script type="text/javascript">
             $(function() {
                 $('#side-menu').metisMenu();
+                $("#envio").hide();
             });
             function f_salir() {
                 $.ajax({
@@ -86,6 +87,7 @@ $menuModel = new \modelos\menuModelo();
                 </div>
                 <!-- /.navbar-static-side -->
             </nav>
+          <iframe name="envio" id="envio"></iframe>
             <div id="page-wrapper">
                 <iframe id="contenido" width="100%" height="98%" frameBorder="0" scrolling="no">
                 </iframe>

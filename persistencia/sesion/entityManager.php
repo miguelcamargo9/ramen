@@ -34,6 +34,8 @@ class entityManager {
       case "pgsql":
         try {
           $this->conexion = new PDO("pgsql:dbname=".DB_NAMEPSSQL.";host=".DB_HOSTPSSQL, DB_USERPSSQL, DB_PASSWORDPSSQL);
+         $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          
         } catch (PDOException $exc) {
           echo $exc->getMessage();
         }

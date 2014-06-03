@@ -5,38 +5,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-/**
- * Description of menuFacade
- *
- * @author Administrador
- */
-
 namespace sesion;
 
 include_once $_SERVER['DOCUMENT_ROOT'] . '/ramen/configuracion/configuracionGeneral.php';
 include_once 'abstractFacade.php';
-include_once BASE_PATH . '/persistencia/entidades/menus.php';
-
-class menuFacade {
-
+/**
+ * Description of pruebaFacade
+ *
+ * @author Sebastian Rojas
+ */
+class pruebaFacade {
+  //put your code here
   private $em;
-
   function __construct() {
-    $config = array("DB" => "mysql");
+    $config = array("DB" => "oracle");
     $abstract = new \abstractFacade();
     $abstract->conectar($config);
     $this->em = $abstract->getEm();
   }
-
-  public function menuPorId($id = "") {
-    $menu = new \entidades\menus();
-    $vQuerys = $menu->getSelect();
-    $sentencia = $this->em->prepare("$vQuerys[1]");
-    $sentencia->bindParam(':id', $id);
-    $sentencia->execute();
-    $vResultado = $sentencia->fetch();
-    return $vResultado;
+  public function query() {
+    foreach ($this->em->query("SELECT * FROM PRUEBA") as $fila) {
+      print_r($fila);
+    }
   }
 
 }
