@@ -7,7 +7,7 @@ $facade = new factura();
 $idFactura = $facade->guardarFactura($_POST['cliente'], $_POST['totalProductos']);
 for ($index = 0;$index < count($_POST);$index++) {
   if($_POST['productos'.$index] != ''){
-    $idFacturaPro = $facade->guardarFacturaProducto($idFactura, $_POST['productos'.$index], $_POST['cantidad_'.$_POST['productos'.$index]]);
+    $facade->guardarFacturaProducto($idFactura, $_POST['productos'.$index], $_POST['cantidad_'.$_POST['productos'.$index]]);
   }
 }
 
