@@ -33,19 +33,24 @@ class facturasFacade {
   public function guardarFactura($cliente = "", $total = "") {
     $facturaDao = new fact();
     $insert = $facturaDao->getInsertar();
+    $queryMax = $facturaDao->getSelectPreparate();
     try {
+      $this->em->beginTransaction(); 
       $sentencia = $this->em->prepare("$insert");
       $sentencia->bindParam(':cliente', $cliente);
       $sentencia->bindParam(':valor', $total);
       $sentencia->execute();
-      $result = $sentencia->fetch(PDO::FETCH_ASSOC); 
-      return $result['ID'];
+      $sentencia1 = $this->em->prepare("$queryMax[1]");
+      $sentencia1->execute();
+      $mProductos = $sentencia1->fetch();
+      return $mProductos[0];
     } catch (PDOException $exc) {
       echo "error al insertar :D";
       echo $exc->getMessage();
     }
   }
   public function guardarFacturaProducto($idfactura = "", $idprodcuto = "", $cantidad = "") {
+    echo $idfactura." = ".$idprodcuto." = ".$cantidad;
     $facturaDao = new fact();
     $insert = $facturaDao->getInsertarD();
     try {
@@ -54,7 +59,6 @@ class facturasFacade {
       $sentencia->bindParam(':idproducto', $idprodcuto);
       $sentencia->bindParam(':cantidad', $cantidad);
       $sentencia->execute();
-      return $sentencia->lastInsertId();
     } catch (PDOException $exc) {
       echo "error al insertar :D";
       echo $exc->getMessage();
