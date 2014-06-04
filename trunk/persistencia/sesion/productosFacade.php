@@ -41,4 +41,13 @@ class productosFacade {
     }
   }
 
+  public function productos() {
+    $productosDao = new \entidades\productos();
+    $vQuerys = $productosDao->getSelectPreparate();
+    $sentencia = $this->em->prepare("$vQuerys[0]");
+    $sentencia->execute();
+    $mProductos = $sentencia->fetchAll();
+    return $mProductos;
+  }
+
 }
